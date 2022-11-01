@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="classpath:storage.properties"/>
+
+    <bean id="storage" class="com.epam.cinema.repository.Storage" p:commonStorageMap="#{${storage}}"/>
+
+    <bean id="storagePostProcessor" class="com.epam.cinema.FillStorageMapBeanPostProcessor"/>
+    <bean id="userRepository" class="com.epam.cinema.repository.impl.UserRepositoryImpl" p:storage-ref="storage"/>
+    <bean id="ticketRepository" class="com.epam.cinema.repository.impl.TicketRepositoryImpl" p:storage-ref="storage"/>
+    <bean id="eventRepository" class="com.epam.cinema.repository.impl.EventRepositoryImpl" p:storage-ref="storage"/>
+
+
+    <bean class="com.epam.cinema.service.impl.BookingFacadeImpl" p:messageFacade="How are you?">
+        <constructor-arg ref="userService"/>
+        <constructor-arg ref="eventService"/>
+        <constructor-arg ref="ticketService"/>
+    </bean>
+
+
+    <bean id="userService" class="com.epam.cinema.service.impl.UserServiceImpl" autowire="constructor"/>
+    <bean id="eventService" class="com.epam.cinema.service.impl.EventServiceImpl" autowire="constructor"/>
+    <bean id="ticketService" class="com.epam.cinema.service.impl.TicketServiceImpl" autowire="constructor"/>
+
+</beans>
