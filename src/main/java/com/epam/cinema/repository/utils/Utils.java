@@ -58,8 +58,6 @@ public class Utils {
         if (isNumeric(value.get("place"))) {
             currentTicket.setPlace(Integer.parseInt(value.get("place")));
         }
-        Ticket.Category category = Ticket.Category.valueOf(value.get("category"));
-        currentTicket.setCategory(category);
         return currentTicket;
     }
 

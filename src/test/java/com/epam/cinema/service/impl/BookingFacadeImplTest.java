@@ -1,8 +1,7 @@
-package cinema.service.impl;
+package com.epam.cinema.service.impl;
 
 import com.epam.cinema.model.Event;
 import com.epam.cinema.model.impl.EventModel;
-import com.epam.cinema.service.impl.BookingFacadeImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,16 +12,13 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.LocalDate;
 
+import static com.epam.cinema.constants.TestData.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations={"/applicationContext.xml"})
+@ContextConfiguration(locations={"/applicationContextMVC.xml"})
 class BookingFacadeImplTest {
-    public static final int EXISTED_EVENT_ID = 1123;
-    public static final int NEW_EVENT_ID = 999;
-    public static final String NEW_EVENT_DATE = "2022-02-02";
-    public static final String NEW_EVENT_TITLE = "new Event";
-    public static final int EVENT_ID = 1122;
+
     @Autowired
     BookingFacadeImpl bookingFacade;
     @Autowired
@@ -32,7 +28,7 @@ class BookingFacadeImplTest {
     @BeforeEach
     void setUp(){
         expected = new EventModel();
-        expected.setId(1122);
+        expected.setId(EVENT_ID_CHRISTMAS);
         expected.setTitle("Christmas");
         expected.setDate(LocalDate.parse("2022-10-31"));
     }
@@ -53,7 +49,7 @@ class BookingFacadeImplTest {
 
     @Test
     void shouldReturnValidEventByIdIT(){
-        Event actualEvent = bookingFacade.getEventById(EVENT_ID);
+        Event actualEvent = bookingFacade.getEventById(EVENT_ID_CHRISTMAS);
 
         assertEquals(expected.getId(), actualEvent.getId());
         assertEquals(expected.getTitle(),actualEvent.getTitle());

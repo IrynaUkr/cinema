@@ -1,5 +1,6 @@
 package com.epam.cinema;
 
+import com.epam.cinema.service.impl.BookingFacadeImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

@@ -1,7 +1,6 @@
 package com.epam.cinema.model;
 
 public interface Ticket extends Entity {
-   enum Category {STANDARD, PREMIUM, BAR}
 
     long getEventId();
 
@@ -10,10 +9,6 @@ public interface Ticket extends Entity {
     long getUserId();
 
     void setUserId(long userId);
-
-    Category getCategory();
-
-   void setCategory(Category category);
 
     int getPlace();
 

@@ -13,6 +13,4 @@ public class TicketModel implements Ticket {
     private long userId;
 
     private int place;
-
-    private Category category;
 }

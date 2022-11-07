@@ -35,14 +35,13 @@ public class EventRepositoryImpl implements EventRepository {
                 .stream()
                 .filter(event -> event.getId() == id)
                 .findAny().orElseThrow(() -> new EventNotFoundException("event not found"));
-
     }
 
     @Override
     public Event create(Event entityDto) {
         log.info("creating event in the event repository");
         if (entityDto == null) {
-            throw new IllegalArgumentException("event is null");
+            throw new EventNotFoundException("event is null");
         }
         long id = entityDto.getId();
         events.add(entityDto);

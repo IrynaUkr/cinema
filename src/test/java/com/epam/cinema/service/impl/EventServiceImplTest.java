@@ -1,9 +1,8 @@
-package cinema.service.impl;
+package com.epam.cinema.service.impl;
 
 import com.epam.cinema.model.Event;
 import com.epam.cinema.model.impl.EventModel;
 import com.epam.cinema.repository.impl.EventRepositoryImpl;
-import com.epam.cinema.service.impl.EventServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,6 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.epam.cinema.constants.TestData.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -23,10 +23,7 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 class EventServiceImplTest {
 
-    public static final String EVENT_TEST_TITLE = "event test title";
-    public static final long EVENT_TEST_ID= 1L;
-    public static final String EVENT_TEST_DATE = "2022-01-01";
-    public static final String NEW_TITLE = "New title";
+
     Event testEvent;
     List<Event> testEventList;
 
@@ -40,7 +37,7 @@ class EventServiceImplTest {
     void setUp(){
         testEvent= new EventModel();
         testEvent.setDate(LocalDate.parse(EVENT_TEST_DATE));
-        testEvent.setTitle(EVENT_TEST_TITLE);
+        testEvent.setTitle(EVENT_TITLE_CHRISTMAS);
         testEvent.setId(EVENT_TEST_ID);
 
         testEventList = new ArrayList<>();
@@ -64,7 +61,7 @@ class EventServiceImplTest {
     void shouldCreateValidEventByEventDtoTest() {
         Event eventDto= new EventModel();
         eventDto.setDate(LocalDate.parse(EVENT_TEST_DATE));
-        eventDto.setTitle(EVENT_TEST_TITLE);
+        eventDto.setTitle(EVENT_TITLE_CHRISTMAS);
         eventDto.setId(EVENT_TEST_ID);
 
         when(eventRepository.create(eventDto)).thenReturn(testEvent);
@@ -102,11 +99,11 @@ class EventServiceImplTest {
 
     @Test
     void getEventsByTitle() {
-        when(eventRepository.getEventsByTitle(EVENT_TEST_TITLE, 1,1)).thenReturn(testEventList);
+        when(eventRepository.getEventsByTitle(EVENT_TITLE_CHRISTMAS, 1,1)).thenReturn(testEventList);
 
-        eventService.getEventsByTitle(EVENT_TEST_TITLE,1,1);
+        eventService.getEventsByTitle(EVENT_TITLE_CHRISTMAS,1,1);
         for(Event ev:testEventList){
-            assertEquals(ev.getTitle(), EVENT_TEST_TITLE);
+            assertEquals(ev.getTitle(), EVENT_TITLE_CHRISTMAS);
         }
     }
 

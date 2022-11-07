@@ -4,10 +4,12 @@ import com.epam.cinema.model.Event;
 import com.epam.cinema.repository.EventRepository;
 import com.epam.cinema.service.EventService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
 @Slf4j
+@Component
 public class EventServiceImpl implements EventService {
 
     EventRepository eventRepository;

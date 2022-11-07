@@ -55,11 +55,10 @@ public class BookingFacadeImpl implements BookingFacade {
     }
 
     @Override
-    public Event updateEvent(Event event) {
+    public Event updateEvent(long id, Event event) {
         log.info("in facade was called createEvent method");
-        return eventService.create(event);
+        return eventService.updateById(id, event);
     }
-
 
     @Override
     public boolean deleteEvent(long eventId) {
